@@ -1,5 +1,5 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "client",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,9 @@
     "dev": "run-p \"dev:*\"",
     "dev:app": "vite",
     "dev:css": "pnpm generate:css -- --watch",
-    "build": "tsc && vite build",
+    "build": "cross-env NODE_ENV=production run-s \"build:*\"",
+    "build:app": "tsc && vite build",
+    "build:css": "pnpm generate:css -- --minify",
     "generate:css": "npx tailwindcss -i ./styles/tailwind.css -o ./src/tailwind.css",
     "preview": "vite preview"
   },
