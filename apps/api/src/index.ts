@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 const server = buildServer()
 
-const port = 3000
+const port = 4001
 
 async function main() {
   try {
