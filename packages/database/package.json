@@ -1,0 +1,34 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "author": "ntoulemont",
+  "license": "ISC",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "private": true,
+  "workspaces": {
+    "nohoist": [
+      "prisma",
+      "@prisma/client"
+    ]
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "dev": "tsc --watch",
+    "push": "yarn prisma db push",
+    "gen": "yarn prisma generate",
+    "studio": "yarn prisma studio",
+    "seed": "npx ts-node src/seed.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "4.6.1",
+    "prisma": "4.6.1",
+    "zod": "3.19.1"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.18",
+    "ts-node": "^10.9.1",
+    "typescript": "4.8.3",
+    "zod-prisma": "0.5.4"
+  }
+}

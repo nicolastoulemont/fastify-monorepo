@@ -1,9 +1,7 @@
 require('dotenv').config()
 
-import { PrismaClient } from '@prisma/client'
 import { buildServer } from './server'
-
-const prisma = new PrismaClient()
+import { prisma } from 'database'
 
 const server = buildServer()
 

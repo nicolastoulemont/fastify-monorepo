@@ -13,13 +13,12 @@ importers:
       '@fastify/cors': ^8.2.0
       '@fastify/jwt': 6.3.3
       '@fastify/websocket': 7.1.1
-      '@prisma/client': 4.6.1
       '@types/node': 18.11.3
       '@types/tap': 15.0.7
+      database: '*'
       dotenv: 16.0.3
       fastify: 4.10.2
       fastify-zod: 1.2.0
-      prisma: 4.6.1
       sinon: 13.0.1
       tap: 16.3.2
       ts-mock-imports: 1.3.8
@@ -27,17 +26,15 @@ importers:
       ts-node-dev: 2.0.0
       typescript: 4.9.3
       zod: 3.19.1
-      zod-prisma: 0.5.4
       zod-to-json-schema: 3.18.1
     dependencies:
       '@fastify/cors': 8.2.0
       '@fastify/jwt': 6.3.3
       '@fastify/websocket': 7.1.1
-      '@prisma/client': 4.6.1_prisma@4.6.1
+      database: link:../../packages/database
       dotenv: 16.0.3
       fastify: 4.10.2
       fastify-zod: 1.2.0_fastify@4.10.2
-      prisma: 4.6.1
       tap: 16.3.2_2dtigtkb225m7ii7q45utxqwgi
       ts-mock-imports: 1.3.8_zlqpvuewtk5ooms2znmpilf6ku
       zod: 3.19.1
@@ -49,17 +46,18 @@ importers:
       ts-node: 10.9.1_dgzc2facqk5zcesahkoclycnse
       ts-node-dev: 2.0.0_dgzc2facqk5zcesahkoclycnse
       typescript: 4.9.3
-      zod-prisma: 0.5.4_prisma@4.6.1+zod@3.19.1
 
   apps/client:
     specifiers:
-      '@tailwindcss/forms': ^0.5.3
+      '@tailwindcss/forms': 0.5.3
+      '@tanstack/react-query': ^4.16.1
       '@types/react': ^18.0.25
       '@types/react-dom': ^18.0.9
       '@vitejs/plugin-react': ^2.2.0
       autoprefixer: ^10.4.13
       clsx: ^1.2.1
       cross-env: 7.0.3
+      database: '*'
       npm-run-all: ^4.1.5
       postcss: ^8.4.19
       react: ^18.2.0
@@ -69,6 +67,7 @@ importers:
       typescript: ^4.6.4
       vite: ^3.2.4
     dependencies:
+      '@tanstack/react-query': 4.16.1_biqbaboplfbrettd7655fr4n2y
       clsx: 1.2.1
       cross-env: 7.0.3
       npm-run-all: 4.1.5
@@ -81,10 +80,30 @@ importers:
       '@types/react-dom': 18.0.9
       '@vitejs/plugin-react': 2.2.0_vite@3.2.4
       autoprefixer: 10.4.13_postcss@8.4.19
+      database: link:../../packages/database
       postcss: 8.4.19
       tailwindcss: 3.2.4_postcss@8.4.19
       typescript: 4.9.3
       vite: 3.2.4
+
+  packages/database:
+    specifiers:
+      '@prisma/client': 4.6.1
+      '@types/node': 18.7.18
+      prisma: 4.6.1
+      ts-node: ^10.9.1
+      typescript: 4.8.3
+      zod: 3.19.1
+      zod-prisma: 0.5.4
+    dependencies:
+      '@prisma/client': 4.6.1_prisma@4.6.1
+      prisma: 4.6.1
+      zod: 3.19.1
+    devDependencies:
+      '@types/node': 18.7.18
+      ts-node: 10.9.1_bidgzm5cq2du6gnjtweqqjrrn4
+      typescript: 4.8.3
+      zod-prisma: 0.5.4_prisma@4.6.1+zod@3.19.1
 
 packages:
 
@@ -703,6 +722,28 @@ packages:
       tailwindcss: 3.2.4_postcss@8.4.19
     dev: true
 
+  /@tanstack/query-core/4.15.1:
+    resolution: {integrity: sha512-+UfqJsNbPIVo0a9ANW0ZxtjiMfGLaaoIaL9vZeVycvmBuWywJGtSi7fgPVMCPdZQFOzMsaXaOsDtSKQD5xLRVQ==}
+    dev: false
+
+  /@tanstack/react-query/4.16.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-PDE9u49wSDykPazlCoLFevUpceLjQ0Mm8i6038HgtTEKb/aoVnUZdlUP7C392ds3Cd75+EGlHU7qpEX06R7d9Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.15.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
   /@ts-morph/common/0.12.3:
     resolution: {integrity: sha512-4tUmeLyXJnJWvTFOKtcNJ1yh0a3SsTLi2MUoyj8iUNznFRN1ZquaNe7Oukqrnki2FzZkm0J9adCNLDZxUzvj+w==}
     dependencies:
@@ -746,6 +787,10 @@ packages:
 
   /@types/node/18.11.3:
     resolution: {integrity: sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==}
+
+  /@types/node/18.7.18:
+    resolution: {integrity: sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==}
+    dev: true
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -3983,6 +4028,37 @@ packages:
       - '@types/node'
     dev: true
 
+  /ts-node/10.9.1_bidgzm5cq2du6gnjtweqqjrrn4:
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.3
+      '@types/node': 18.7.18
+      acorn: 8.8.1
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 4.8.3
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
+
   /ts-node/10.9.1_dgzc2facqk5zcesahkoclycnse:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -4119,6 +4195,12 @@ packages:
       is-typedarray: 1.0.0
     dev: false
 
+  /typescript/4.8.3:
+    resolution: {integrity: sha512-goMHfm00nWPa8UvR/CPSvykqf6dVV8x/dp0c5mFTMTIu0u0FlGWRioyy7Nn0PGAdHxpJZnuO/ut+PpQ8UiHAig==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
   /typescript/4.9.3:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
@@ -4170,6 +4252,14 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.1.1
+    dev: false
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /util-deprecate/1.0.2:
