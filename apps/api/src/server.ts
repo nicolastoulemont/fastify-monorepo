@@ -1,6 +1,6 @@
 import fastify from 'fastify'
 import fastifyWebsockets from '@fastify/websocket'
-import { messagesRoutes } from './modules/messages/messages.route'
+import { messagesRoutes } from './modules/message/message.route'
 import { healthcheckRoute } from './modules/health-check/health-check.route'
 
 export function buildServer() {
