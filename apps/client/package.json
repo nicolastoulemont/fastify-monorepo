@@ -4,18 +4,28 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "run-p \"dev:*\"",
+    "dev:app": "vite",
+    "dev:css": "pnpm generate:css -- --watch",
     "build": "tsc && vite build",
+    "generate:css": "npx tailwindcss -i ./styles/tailwind.css -o ./src/tailwind.css",
     "preview": "vite preview"
   },
   "dependencies": {
+    "clsx": "^1.2.1",
+    "cross-env": "7.0.3",
+    "npm-run-all": "^4.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "6.4.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^2.2.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4",
     "typescript": "^4.6.4",
     "vite": "^3.2.4"
   }
