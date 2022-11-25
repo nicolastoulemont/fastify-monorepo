@@ -1,7 +1,8 @@
 import fastify, { FastifyReply } from 'fastify'
 import fasitfyCors from '@fastify/cors'
 import fastifyWebsockets from '@fastify/websocket'
-import fastifyJWT from '@fastify/jwt'
+import fastifySession from '@fastify/session'
+import fastifyCookie from '@fastify/cookie'
 import { messagesRoutes } from './modules/message/message.route'
 import { accountRoutes } from './modules/account/account.route'
 import { accountSchemas } from './modules/account/account.schema'
@@ -17,20 +18,11 @@ export function buildServer() {
   })
 
   server.register(fastifyWebsockets)
-  server.register(fastifyJWT, { secret: process.env.JWT_SECRET as string })
-
-  server.decorate('authenticate', async (request: FastifyRequest, reply: FastifyReply): Promise<void> => {
-    try {
-      await request.jwtVerify()
-    } catch (e) {
-      return reply.send(e)
-    }
-  })
-
-  server.addHook('preHandler', (req, _, next) => {
-    // @ts-ignore Cannot reconcile types
-    req.jwt = server.jwt
-    return next()
+  server.register(fastifyCookie, {})
+  server.register(fastifySession, {
+    secret: process.env.SESSION_SECRET as string,
+    cookieName: 'sessionId',
+    cookie: { secure: false },
   })
 
   for (const schema of accountSchemas) {
