@@ -1,0 +1,19 @@
+{
+  "name": "websockets",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "ntoulemont",
+  "license": "ISC",
+  "description": "",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "dev": "turbo run dev --parallel"
+  },
+  "devDependencies": {
+    "turbo": "latest"
+  }
+}

@@ -1,0 +1,11 @@
+## General projects ignores
+node_modules
+dist
+.DS_Store
+.env
+tsconfig.tsbuildinfo
+.turbo
+
+
+TODO.md
+packages/crawler/dump
