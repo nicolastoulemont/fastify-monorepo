@@ -1,4 +1,4 @@
-import fastify, { FastifyReply } from 'fastify'
+import fastify from 'fastify'
 import fasitfyCors from '@fastify/cors'
 import fastifyWebsockets from '@fastify/websocket'
 import fastifySession from '@fastify/session'
@@ -8,7 +8,6 @@ import { accountRoutes } from './modules/account/account.route'
 import { accountSchemas } from './modules/account/account.schema'
 
 import { healthcheckRoute } from './modules/health-check/health-check.route'
-import { FastifyRequest } from 'fastify'
 
 export function buildServer() {
   const server = fastify()

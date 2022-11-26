@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { SignInInput, SignUpInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
 import {
@@ -13,11 +14,13 @@ export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, 
   const account = await getAccountByEmail(req.body)
   if (!account) {
     reply.status(401).send({ message: 'Invalid email or password' })
+    return
   }
 
-  const match = password === account?.password
+  const match = await bcrypt.compare(account.password, password)
   if (!match) {
     reply.status(401).send({ message: 'Invalid email or password' })
+    return
   }
 
   reply.send(account)

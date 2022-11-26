@@ -1,4 +1,5 @@
 import { prisma } from 'database'
+import bcrypt from 'bcrypt'
 import { SignUpInput, SignInInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
 
 export async function getAccountByEmail(body: SignInInput) {
@@ -11,10 +12,12 @@ export async function getAccountByEmail(body: SignInInput) {
 
 export async function createAccount(body: SignUpInput) {
   const { email, password } = body
+  const hash = await bcrypt.hash(password, 12)
+
   await prisma.account.create({
     data: {
       email,
-      password,
+      password: hash,
     },
   })
 }
