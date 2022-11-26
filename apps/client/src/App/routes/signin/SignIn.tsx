@@ -38,7 +38,7 @@ export function SignIn() {
         <div className='w-full flex justify-between items-end'>
           <div className='flex flex-col space-y-2'>
             <p className='text-sm'> Don't have an account ?</p>
-            <Link to='/sign-up' className='underline underline-offset-1 font-medium'>
+            <Link to='/signup' className='underline underline-offset-1 font-medium'>
               Sign Up
             </Link>
           </div>

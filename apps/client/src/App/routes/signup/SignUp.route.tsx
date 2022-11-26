@@ -2,7 +2,7 @@ import { SignUp, action } from './SignUp'
 import { ErrorPage } from '../../components'
 
 export const signUpRoute = {
-  path: 'sign-up',
+  path: 'signup',
   element: <SignUp />,
   errorElement: <ErrorPage />,
   action,

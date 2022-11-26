@@ -10,13 +10,17 @@ export const accountQuery = (id: string) => ({
 })
 
 export async function getAccount(id: string): Promise<Account> {
-  const res = await fetch(`${API_URL}/account/${id}`)
+  const res = await fetch(`${API_URL}/accounts/${id}`)
   const account: Account = await res.json()
   return account
 }
 
-export async function signUp(credentials: IAccountByIdBody & { role: string }) {
-  const res = await fetch(`${API_URL}/signup`, { method: 'post', body: JSON.stringify(credentials) })
-  const account: Account = await res.json()
-  return account
+export async function signUp(credentials: IAccountByIdBody) {
+  return await fetch(`${API_URL}/accounts/signup`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  })
 }

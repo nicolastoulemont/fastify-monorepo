@@ -10,7 +10,7 @@ import { accountSchemas } from './modules/account/account.schema'
 import { healthcheckRoute } from './modules/health-check/health-check.route'
 
 export function buildServer() {
-  const server = fastify()
+  const server = fastify({ logger: true })
 
   server.register(fasitfyCors, {
     origin: '*',

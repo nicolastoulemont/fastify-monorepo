@@ -10,3 +10,6 @@ tsconfig.tsbuildinfo
 
 TODO.md
 packages/crawler/dump
+
+
+*.db

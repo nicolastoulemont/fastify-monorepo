@@ -25,11 +25,7 @@ export const signInResponseSchema = accountWithoutPassword
 /**
  * SignUp
  */
-const roleTypeUnionSchema = z.union([z.literal('employee'), z.literal('admin')])
-
-const signUpInputSchema = signInInputSchema.extend({
-  roles: z.array(z.object({ type: roleTypeUnionSchema })),
-})
+const signUpInputSchema = signInInputSchema
 export type SignUpInput = z.infer<typeof signUpInputSchema>
 
 export const signUpResponseSchema = z.object({ success: z.boolean() })

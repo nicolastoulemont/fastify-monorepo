@@ -16,7 +16,7 @@ generator zod {
 model Account {
   id       String           @id @default(cuid()) /// @zod.uuid()
   email    String           @unique /// @zod.email()
-  password String
+  password String /// @zod.min(8, { message: "The password must be at least 8 characters long" })
   messages Message[]
   channels AccountChannel[]
 }

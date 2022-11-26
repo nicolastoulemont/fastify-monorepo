@@ -5,7 +5,7 @@ import { prisma } from 'database'
 
 const server = buildServer()
 
-const port = 4001
+const port = 4000
 
 async function main() {
   try {

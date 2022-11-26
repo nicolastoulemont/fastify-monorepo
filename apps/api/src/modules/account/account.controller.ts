@@ -23,12 +23,12 @@ export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, 
     return
   }
 
-  reply.send(account)
+  reply.status(200).send(account)
 }
 export async function signUpHandler(req: FastifyRequest<{ Body: SignUpInput }>, reply: FastifyReply) {
   try {
     await createAccount(req.body)
-    reply.send({ success: true })
+    reply.status(201).send({ success: true })
   } catch (error) {
     console.error(error)
     reply.status(401).send({ message: 'Invalid email or password' })
