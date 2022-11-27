@@ -34,7 +34,11 @@ declare module 'fastify' {
     sessionStore: Readonly<FastifySessionPlugin.SessionStore>
   }
 
-  interface Session extends SessionData {}
+  interface Session extends SessionData {
+    user: {
+      id: string
+    } | null
+  }
 }
 
 type Callback = (err?: Error) => void
@@ -44,10 +48,6 @@ interface SessionData extends ExpressSessionData {
   sessionId: string
 
   encryptedSessionId: string
-
-  user: {
-    id: string
-  } | null
 
   /** Updates the `expires` property of the session's cookie. */
   touch(): void

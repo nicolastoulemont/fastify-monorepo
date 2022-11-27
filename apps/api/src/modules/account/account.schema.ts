@@ -43,6 +43,8 @@ export const updateAccountByIdResponseSchema = AccountModel.omit({ password: tru
 
 export const deleteAccountByIdResponseSchema = z.object({ success: z.boolean() })
 
+export const successResponseSchema = z.object({ success: z.boolean() })
+
 export const { schemas: accountSchemas, $ref } = buildJsonSchemas({
   signInInputSchema,
   signInResponseSchema,
@@ -54,4 +56,5 @@ export const { schemas: accountSchemas, $ref } = buildJsonSchemas({
   getAccountByIdResponseSchema: accountWithoutPassword,
   notFoundResponseSchema,
   unAuthorizedResponseSchema,
+  successResponseSchema,
 })

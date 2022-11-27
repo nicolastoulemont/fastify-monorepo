@@ -17,7 +17,7 @@ export function buildServer() {
   })
 
   server.register(fastifyWebsockets)
-  server.register(fastifyCookie, {})
+  server.register(fastifyCookie)
   server.register(fastifySession, {
     secret: process.env.SESSION_SECRET as string,
     cookieName: 'sessionId',

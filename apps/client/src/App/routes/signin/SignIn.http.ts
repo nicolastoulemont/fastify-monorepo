@@ -4,7 +4,11 @@ import { API_URL } from '../../../constants'
 export type IAccountByIdBody = Omit<Account, 'id'>
 
 export async function signIn(credentials: IAccountByIdBody) {
-  const res = await fetch(`${API_URL}/signin`, { method: 'post', body: JSON.stringify(credentials) })
-  const account: Account = await res.json()
-  return account
+  return await fetch(`${API_URL}/accounts/signin`, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(credentials),
+  })
 }

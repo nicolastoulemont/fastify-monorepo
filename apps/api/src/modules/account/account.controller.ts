@@ -9,22 +9,6 @@ import {
   updateAccountById,
 } from './account.service'
 
-export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, reply: FastifyReply) {
-  const { password } = req.body
-  const account = await getAccountByEmail(req.body)
-  if (!account) {
-    reply.status(401).send({ message: 'Invalid email or password' })
-    return
-  }
-
-  const match = await bcrypt.compare(account.password, password)
-  if (!match) {
-    reply.status(401).send({ message: 'Invalid email or password' })
-    return
-  }
-
-  reply.status(200).send(account)
-}
 export async function signUpHandler(req: FastifyRequest<{ Body: SignUpInput }>, reply: FastifyReply) {
   try {
     await createAccount(req.body)
@@ -33,6 +17,43 @@ export async function signUpHandler(req: FastifyRequest<{ Body: SignUpInput }>, 
     console.error(error)
     reply.status(401).send({ message: 'Invalid email or password' })
   }
+}
+
+export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, reply: FastifyReply) {
+  const { password } = req.body
+  const account = await getAccountByEmail(req.body)
+
+  console.log(account)
+  if (!account) {
+    reply.status(401).send({ message: 'Invalid email or password' })
+    return
+  }
+
+  const match = await bcrypt.compare(password, account.password)
+  if (!match) {
+    reply.status(401).send({ message: 'Invalid email or password' })
+    return
+  }
+
+  req.session.set('user', { id: account.id })
+
+  reply.status(200).send(account)
+}
+
+export async function signOutHandler(req: FastifyRequest, reply: FastifyReply) {
+  const user: { id: string } = req.session.get('user')
+  if (user?.id) {
+    reply.status(404).send({ message: 'No session to sign out from' })
+  }
+
+  req.session.destroy((err) => {
+    if (err) {
+      reply.status(500)
+      reply.send('Internal Server Error')
+    } else {
+      reply.status(200).send({ success: true })
+    }
+  })
 }
 
 export async function updateAccountByIdHandler(
