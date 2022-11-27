@@ -23,7 +23,6 @@ export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, 
   const { password } = req.body
   const account = await getAccountByEmail(req.body)
 
-  console.log(account)
   if (!account) {
     reply.status(401).send({ message: 'Invalid email or password' })
     return
@@ -41,7 +40,7 @@ export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, 
 }
 
 export async function signOutHandler(req: FastifyRequest, reply: FastifyReply) {
-  const user: { id: string } = req.session.get('user')
+  const user = req.session.get<{ id: string }>('user')
   if (user?.id) {
     reply.status(404).send({ message: 'No session to sign out from' })
   }
@@ -54,6 +53,21 @@ export async function signOutHandler(req: FastifyRequest, reply: FastifyReply) {
       reply.status(200).send({ success: true })
     }
   })
+}
+
+export async function selfHandler(req: FastifyRequest, reply: FastifyReply) {
+  const user = req.session.get<{ id: string }>('user')
+  if (user?.id) {
+    reply.status(404).send({ message: 'Not signed in' })
+    return
+  }
+
+  try {
+    const account = await getAccountById(user)
+    reply.send(account)
+  } catch (error) {
+    reply.status(404).send({ message: 'Invalid session id' })
+  }
 }
 
 export async function updateAccountByIdHandler(

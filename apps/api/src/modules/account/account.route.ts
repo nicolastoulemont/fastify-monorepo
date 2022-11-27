@@ -7,6 +7,7 @@ import {
   getAccountByIdHandler,
   deleteAccountByIdHandler,
   signOutHandler,
+  selfHandler,
 } from './account.controller'
 
 export async function accountRoutes(server: FastifyInstance) {
@@ -36,6 +37,19 @@ export async function accountRoutes(server: FastifyInstance) {
       },
     },
     signUpHandler
+  )
+
+  server.get(
+    '/self',
+    {
+      schema: {
+        response: {
+          200: $ref('signInResponseSchema'),
+          404: $ref('notFoundResponseSchema'),
+        },
+      },
+    },
+    selfHandler
   )
 
   server.post(
