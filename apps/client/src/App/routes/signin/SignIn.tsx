@@ -10,16 +10,14 @@ export type IAccountByIdBody = Omit<Account, 'id'>
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const credentials = Object.fromEntries(formData) as IAccountByIdBody
-
-  const result = await signIn(credentials)
+  const result = await signIn(formData)
   if (api.isError(result)) {
     return await api.handleError(result)
   }
 
   const account = (await result.json()) as Account
   await queryClient.invalidateQueries(['account', account.id])
-  return redirect(`/channels/${account.id}`)
+  return redirect('/channels')
 }
 
 export function SignIn() {

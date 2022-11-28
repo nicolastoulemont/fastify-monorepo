@@ -15,12 +15,9 @@ export async function getAccount(id: string): Promise<Account> {
   return account
 }
 
-export async function signUp(credentials: IAccountByIdBody) {
+export async function signUp(credentials: FormData) {
   return await fetch(`${API_URL}/accounts/signup`, {
     method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(credentials),
+    body: credentials,
   })
 }

@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import fasitfyCors from '@fastify/cors'
+import fastifyMultipart from '@fastify/multipart'
 import fastifyWebsockets from '@fastify/websocket'
 import fastifySession from '@fastify/session'
 import fastifyCookie from '@fastify/cookie'
@@ -16,6 +17,11 @@ export function buildServer() {
     origin: '*',
   })
 
+  /**
+   * `{ attachFieldsToBody: 'keyValues' }` enable JSON Schema validation
+   * https://github.com/fastify/fastify-multipart#json-schema-body-validation
+   */
+  server.register(fastifyMultipart, { attachFieldsToBody: 'keyValues' })
   server.register(fastifyWebsockets)
   server.register(fastifyCookie)
   server.register(fastifySession, {

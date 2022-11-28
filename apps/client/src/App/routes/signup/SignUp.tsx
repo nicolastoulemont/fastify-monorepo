@@ -8,9 +8,7 @@ type IAccountByIdBody = Omit<Account, 'id'>
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
-  const credentials = Object.fromEntries(formData) as IAccountByIdBody
-
-  const result = await signUp(credentials)
+  const result = await signUp(formData)
   if (api.isError(result)) {
     return await api.handleError(result)
   }
