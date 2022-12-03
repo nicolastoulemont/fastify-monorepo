@@ -48,7 +48,7 @@ export function SignIn() {
             id='password'
           />
         </div>
-        {error && (
+        {error && error.message && (
           <div className='px-3 py-2 flex flex-col bg-red-50 rounded-lg'>
             <h2 className='font-medium text-sm'>{error.error}</h2>
             <p className='text-xs'>{error.message}</p>

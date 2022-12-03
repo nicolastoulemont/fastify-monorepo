@@ -1,10 +1,10 @@
 import { Account } from 'database'
-import { API_URL } from '../../../constants'
+import { api } from '../../../utils'
 
 export type IAccountByIdBody = Omit<Account, 'id'>
 
 export async function signIn(credentials: FormData) {
-  return await fetch(`${API_URL}/accounts/signin`, {
+  return await api.fetch('/accounts/signin', {
     method: 'post',
     body: credentials,
   })

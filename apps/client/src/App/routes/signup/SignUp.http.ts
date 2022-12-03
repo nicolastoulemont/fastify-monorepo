@@ -1,5 +1,5 @@
 import type { Account } from 'database'
-import { API_URL } from '../../../constants'
+import { api } from '../../../utils'
 
 export type IAccountByIdBody = Omit<Account, 'id'>
 
@@ -10,13 +10,13 @@ export const accountQuery = (id: string) => ({
 })
 
 export async function getAccount(id: string): Promise<Account> {
-  const res = await fetch(`${API_URL}/accounts/${id}`)
+  const res = await api.fetch(`/accounts/${id}`)
   const account: Account = await res.json()
   return account
 }
 
 export async function signUp(credentials: FormData) {
-  return await fetch(`${API_URL}/accounts/signup`, {
+  return await fetch('/accounts/signup', {
     method: 'post',
     body: credentials,
   })
