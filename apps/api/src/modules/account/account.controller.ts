@@ -34,17 +34,19 @@ export async function signInHandler(req: FastifyRequest<{ Body: SignInInput }>, 
     return
   }
 
-  req.session.set('user', { id: account.id })
+  const { id } = account
+  req.session.set('user', { id })
 
   reply.status(200).send(account)
 }
 
 export async function signOutHandler(req: FastifyRequest, reply: FastifyReply) {
   const user = req.session.get<{ id: string }>('user')
-  if (user?.id) {
+  if (!user?.id) {
     reply.status(404).send({ message: 'No session to sign out from' })
   }
 
+  req.session.set('user', null)
   req.session.destroy((err) => {
     if (err) {
       reply.status(500)
@@ -56,8 +58,8 @@ export async function signOutHandler(req: FastifyRequest, reply: FastifyReply) {
 }
 
 export async function selfHandler(req: FastifyRequest, reply: FastifyReply) {
-  const user = req.session.get<{ id: string }>('user')
-  if (user?.id) {
+  const user = req.session.get<{ id: string } | null>('user')
+  if (!user?.id) {
     reply.status(404).send({ message: 'Not signed in' })
     return
   }

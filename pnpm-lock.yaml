@@ -10,10 +10,9 @@ importers:
 
   apps/api:
     specifiers:
-      '@fastify/cookie': ^8.3.0
       '@fastify/cors': ^8.2.0
       '@fastify/multipart': ^7.3.0
-      '@fastify/session': ^10.0.2
+      '@fastify/secure-session': ^5.2.0
       '@fastify/websocket': 7.1.1
       '@types/bcrypt': ^5.0.0
       '@types/node': 18.11.3
@@ -32,10 +31,9 @@ importers:
       zod: 3.19.1
       zod-to-json-schema: 3.18.1
     dependencies:
-      '@fastify/cookie': 8.3.0
       '@fastify/cors': 8.2.0
       '@fastify/multipart': 7.3.0
-      '@fastify/session': 10.0.2
+      '@fastify/secure-session': 5.2.0
       '@fastify/websocket': 7.1.1
       bcrypt: 5.1.0
       database: link:../../packages/database
@@ -404,8 +402,8 @@ packages:
       text-decoding: 1.0.0
     dev: false
 
-  /@fastify/cookie/8.3.0:
-    resolution: {integrity: sha512-P9hY9GO11L20TnZ33XN3i0bt+3x0zaT7S0ohAzWO950E9PB2xnNhLYzPFJIGFi5AVN0yr5+/iZhWxeYvR6KCzg==}
+  /@fastify/cookie/7.4.0:
+    resolution: {integrity: sha512-82MUHsZJY/Wl+rG2E+bnYxSifOtNRChm2M+8xnZHnKtYmyNfLvy/37ElCtqD3KzUyTycR+GE7v7uiDD/tY4TkA==}
     dependencies:
       cookie: 0.5.0
       fastify-plugin: 4.3.0
@@ -445,11 +443,13 @@ packages:
       stream-wormhole: 1.1.0
     dev: false
 
-  /@fastify/session/10.0.2:
-    resolution: {integrity: sha512-MLwNJ1VRXK7Fkn6Q8lBLaI4vLRp8dSrUOT6ca/uQCwMI2ZwfNA9WJN2Rq60kph0Cuxg/7XqRsxofE8QpxRBfag==}
+  /@fastify/secure-session/5.2.0:
+    resolution: {integrity: sha512-oRWKdHwWUzp4rsJ3GnR8w8doE+7vllWMtohBVp77bENkhm4/OvofaO6PJLJuQvKF7XJAKiGip29dX1RsllKT7g==}
+    hasBin: true
     dependencies:
-      fastify-plugin: 4.3.0
-      safe-stable-stringify: 2.4.1
+      '@fastify/cookie': 7.4.0
+      fastify-plugin: 3.0.1
+      sodium-native: 3.4.1
     dev: false
 
   /@fastify/static/6.5.1:
@@ -1965,6 +1965,10 @@ packages:
     resolution: {integrity: sha512-qKRta6N7BWEFVlyonVY/V+BMLgFqktCUV0QjT259ekAIlbVrMaFnFLxJ4s/JPl4tou56S1BzPufI60bLe29fHA==}
     dev: false
 
+  /fastify-plugin/3.0.1:
+    resolution: {integrity: sha512-qKcDXmuZadJqdTm6vlCqioEbyewF60b/0LOFCcYN1B6BIZGlYJumWWOYs70SFYLDAH4YqdE1cxH/RKMG7rFxgA==}
+    dev: false
+
   /fastify-plugin/4.3.0:
     resolution: {integrity: sha512-M3+i368lV0OYTJ5TfClIoPKEKSOF7112iiPdwgfSR0gN98BjA1Nk+c6oBHtfcVt9KiMxl+EQKHC1QNWo3ZOpYQ==}
     dev: false
@@ -2911,6 +2915,11 @@ packages:
       whatwg-url: 5.0.0
     dev: false
 
+  /node-gyp-build/4.5.0:
+    resolution: {integrity: sha512-2iGbaQBV+ITgCz76ZEjmhUKAKVf7xfY1sRl4UiKQspfZMH2h06SyhNsnSVy50cwkFQDGLyif6m/6uFXHkOZ6rg==}
+    hasBin: true
+    dev: false
+
   /node-preload/0.2.1:
     resolution: {integrity: sha512-RM5oyBy45cLEoHqCeh+MNuFAxO0vTFBLskvQbOKnEE7YTTSN4tbN8QWDIPQ6L+WvKsB/qLEGpYe2ZZ9d4W9OIQ==}
     engines: {node: '>=8'}
@@ -3754,6 +3763,13 @@ packages:
     dependencies:
       dot-case: 3.0.4
       tslib: 2.4.1
+    dev: false
+
+  /sodium-native/3.4.1:
+    resolution: {integrity: sha512-PaNN/roiFWzVVTL6OqjzYct38NSXewdl2wz8SRB51Br/MLIJPrbM3XexhVWkq7D3UWMysfrhKVf1v1phZq6MeQ==}
+    requiresBuild: true
+    dependencies:
+      node-gyp-build: 4.5.0
     dev: false
 
   /sonic-boom/3.2.0:
