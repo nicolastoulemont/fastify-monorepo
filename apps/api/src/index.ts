@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 import { buildServer } from './server'
-import { prisma } from 'database'
+import { prisma } from '@template/database'
 
 const server = buildServer()
 
