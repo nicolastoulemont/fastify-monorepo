@@ -5,7 +5,7 @@ import { AccountModel } from '../generated'
  * Shared
  */
 const accountWithoutPassword = AccountModel.omit({ password: true })
-export type AccountWithRoles = z.infer<typeof accountWithoutPassword>
+export type AccountWithoutPassword = z.infer<typeof accountWithoutPassword>
 export const notFoundResponseSchema = z.object({ message: z.string() })
 export const unAuthorizedResponseSchema = z.object({ message: z.string() })
 

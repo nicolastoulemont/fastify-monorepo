@@ -2,7 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import { signInRoute } from './signin'
 import { rootRoute } from './root'
 import { signUpRoute } from './signup'
-import { channelsRoute } from './channels'
+import { dashboardRoute } from './dashboard'
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -10,7 +10,7 @@ export const router = createBrowserRouter(
       <Route /** / */ {...rootRoute} />
       <Route /** /signin */ {...signInRoute} />
       <Route /** /signup */ {...signUpRoute} />
-      <Route /** /channels */ {...channelsRoute} />
+      <Route /** /channels */ {...dashboardRoute} />
     </>
   )
 )

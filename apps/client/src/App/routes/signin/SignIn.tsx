@@ -3,7 +3,7 @@ import type { ActionFunctionArgs } from 'react-router-dom'
 import { signIn } from './SignIn.http'
 import { queryClient } from '../../query'
 
-import type { Account } from 'database'
+import type { AccountWithoutPassword } from '@template/schemas'
 import { api } from '../../../utils'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
@@ -13,9 +13,9 @@ export const action = async ({ request }: ActionFunctionArgs) => {
     return await api.handleError(result)
   }
 
-  const account = (await result.json()) as Account
+  const account = (await result.json()) as AccountWithoutPassword
   await queryClient.invalidateQueries(['account', account.id])
-  return redirect('/channels')
+  return redirect('/dashboard')
 }
 
 export function SignIn() {
