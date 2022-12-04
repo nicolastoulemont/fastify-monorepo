@@ -97,6 +97,7 @@ importers:
       '@prisma/client': 4.6.1
       '@types/node': 18.7.18
       prisma: 4.6.1
+      rimraf: ^3.0.2
       ts-node: ^10.9.1
       typescript: 4.8.3
       zod: 3.19.1
@@ -104,6 +105,7 @@ importers:
     dependencies:
       '@prisma/client': 4.6.1_prisma@4.6.1
       prisma: 4.6.1
+      rimraf: 3.0.2
       zod: 3.19.1
     devDependencies:
       '@types/node': 18.7.18
