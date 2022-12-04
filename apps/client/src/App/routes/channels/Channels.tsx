@@ -2,11 +2,8 @@ import { Form, Link, useActionData, useLoaderData } from 'react-router-dom'
 import { getUserChannels } from './Channels.http'
 import { queryClient } from '../../query'
 
-import type { Account } from 'database'
 import { api } from '../../../utils'
 import { getSelf } from '../../shared/http'
-
-export type IAccountByIdBody = Omit<Account, 'id'>
 
 export const loader = async () => {
   const selfRes = await getSelf()

@@ -1,10 +1,7 @@
 import { Form, ActionFunctionArgs, redirect, Link, useActionData } from 'react-router-dom'
 import { signUp } from './SignUp.http'
 import { queryClient } from '../../query'
-import type { Account } from 'database'
 import { api } from '../../../utils'
-
-type IAccountByIdBody = Omit<Account, 'id'>
 
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()

@@ -6,8 +6,6 @@ import { queryClient } from '../../query'
 import type { Account } from 'database'
 import { api } from '../../../utils'
 
-export type IAccountByIdBody = Omit<Account, 'id'>
-
 export const action = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData()
   const result = await signIn(formData)
