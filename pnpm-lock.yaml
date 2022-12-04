@@ -14,11 +14,12 @@ importers:
       '@fastify/multipart': ^7.3.0
       '@fastify/secure-session': ^5.2.0
       '@fastify/websocket': 7.1.1
+      '@template/database': '*'
+      '@template/schemas': '*'
       '@types/bcrypt': ^5.0.0
       '@types/node': 18.11.3
       '@types/tap': 15.0.7
       bcrypt: ^5.1.0
-      database: '*'
       dotenv: 16.0.3
       fastify: 4.10.2
       fastify-zod: 1.2.0
@@ -35,8 +36,9 @@ importers:
       '@fastify/multipart': 7.3.0
       '@fastify/secure-session': 5.2.0
       '@fastify/websocket': 7.1.1
+      '@template/database': link:../../packages/database
+      '@template/schemas': link:../../packages/schemas
       bcrypt: 5.1.0
-      database: link:../../packages/database
       dotenv: 16.0.3
       fastify: 4.10.2
       fastify-zod: 1.2.0_fastify@4.10.2
@@ -57,13 +59,14 @@ importers:
     specifiers:
       '@tailwindcss/forms': 0.5.3
       '@tanstack/react-query': ^4.16.1
+      '@template/database': '*'
+      '@template/schemas': '*'
       '@types/react': ^18.0.25
       '@types/react-dom': ^18.0.9
       '@vitejs/plugin-react': ^2.2.0
       autoprefixer: ^10.4.13
       clsx: ^1.2.1
       cross-env: 7.0.3
-      database: '*'
       npm-run-all: ^4.1.5
       postcss: ^8.4.19
       react: ^18.2.0
@@ -82,11 +85,12 @@ importers:
       react-router-dom: 6.4.3_biqbaboplfbrettd7655fr4n2y
     devDependencies:
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+      '@template/database': link:../../packages/database
+      '@template/schemas': link:../../packages/schemas
       '@types/react': 18.0.25
       '@types/react-dom': 18.0.9
       '@vitejs/plugin-react': 2.2.0_vite@3.2.4
       autoprefixer: 10.4.13_postcss@8.4.19
-      database: link:../../packages/database
       postcss: 8.4.19
       tailwindcss: 3.2.4_postcss@8.4.19
       typescript: 4.9.3
@@ -112,6 +116,21 @@ importers:
       ts-node: 10.9.1_bidgzm5cq2du6gnjtweqqjrrn4
       typescript: 4.8.3
       zod-prisma: 0.5.4_prisma@4.6.1+zod@3.19.1
+
+  packages/schemas:
+    specifiers:
+      '@types/node': 18.7.18
+      rimraf: ^3.0.2
+      ts-node: ^10.9.1
+      typescript: 4.8.3
+      zod: 3.19.1
+    dependencies:
+      rimraf: 3.0.2
+      zod: 3.19.1
+    devDependencies:
+      '@types/node': 18.7.18
+      ts-node: 10.9.1_bidgzm5cq2du6gnjtweqqjrrn4
+      typescript: 4.8.3
 
 packages:
 

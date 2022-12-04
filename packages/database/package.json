@@ -1,10 +1,10 @@
 {
-  "name": "database",
+  "name": "@template/database",
   "version": "1.0.0",
   "author": "ntoulemont",
   "license": "ISC",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "private": true,
   "workspaces": {
     "nohoist": [
@@ -13,7 +13,7 @@
     ]
   },
   "scripts": {
-    "build": "rimraf ./build && tsc -b",
+    "build": "rimraf ./dist && tsc -b",
     "dev": "tsc --watch",
     "push": "yarn prisma db push",
     "gen": "yarn prisma generate",

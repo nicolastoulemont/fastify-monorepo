@@ -7,7 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "skipLibCheck": true,
+    "strict": true,
     "outDir": "dist",
     "rootDir": "src",
     "isolatedModules": true,

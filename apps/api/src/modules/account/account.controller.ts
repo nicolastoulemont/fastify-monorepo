@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { FastifyRequest, FastifyReply } from 'fastify'
-import { SignInInput, SignUpInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
+import { SignInInput, SignUpInput, UpdateAccountByIdInput, ByIdParam } from '@template/schemas'
 import {
   createAccount,
   deleteAccountById,

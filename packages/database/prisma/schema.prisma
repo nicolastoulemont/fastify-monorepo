@@ -8,9 +8,10 @@ generator client {
 }
 
 generator zod {
-  provider     = "zod-prisma"
-  output       = "../../../apps/api/src/generated_schemas" // (default) the directory where generated zod schemas will be saved
-  useDecimalJs = true // represent the prisma Decimal type using Decimal.js (as Prisma does)
+  provider      = "zod-prisma"
+  output        = "../../schemas/src/generated" // (default) the directory where generated zod schemas will be saved
+  relationModel = false
+  useDecimalJs  = true // represent the prisma Decimal type using Decimal.js (as Prisma does)
 }
 
 model Account {
@@ -35,6 +36,7 @@ model Channel {
   id        String           @id @default(cuid()) /// @zod.uuid()
   createdAt DateTime         @default(now())
   updatedAt DateTime         @updatedAt
+  name      String
   messages  Message[]
   accounts  AccountChannel[]
 }

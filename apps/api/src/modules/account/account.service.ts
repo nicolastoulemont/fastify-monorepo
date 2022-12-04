@@ -1,4 +1,4 @@
-import { prisma } from 'database'
+import { prisma } from '@template/database'
 import bcrypt from 'bcrypt'
 import { SignUpInput, SignInInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
 
