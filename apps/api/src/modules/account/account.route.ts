@@ -1,5 +1,7 @@
-import { FastifyInstance } from 'fastify'
-import { $ref } from './account.schema'
+import { FastifyInstance } from "fastify"
+import { $ref } from "./account.schema"
+import { isAuthenticated } from "../../middleware"
+
 import {
   signInHandler,
   signUpHandler,
@@ -8,17 +10,17 @@ import {
   deleteAccountByIdHandler,
   signOutHandler,
   selfHandler,
-} from './account.controller'
+} from "./account.controller"
 
 export async function accountRoutes(server: FastifyInstance) {
   server.post(
-    '/signin',
+    "/signin",
     {
       schema: {
-        body: $ref('signInInputSchema'),
+        body: $ref("signInInputSchema"),
         response: {
-          200: $ref('signInResponseSchema'),
-          401: $ref('unAuthorizedResponseSchema'),
+          200: $ref("signInResponseSchema"),
+          401: $ref("unAuthorizedResponseSchema"),
         },
       },
     },
@@ -26,13 +28,13 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.post(
-    '/signup',
+    "/signup",
     {
       schema: {
-        body: $ref('signUpInputSchema'),
+        body: $ref("signUpInputSchema"),
         response: {
-          201: $ref('signUpResponseSchema'),
-          401: $ref('unAuthorizedResponseSchema'),
+          201: $ref("signUpResponseSchema"),
+          401: $ref("unAuthorizedResponseSchema"),
         },
       },
     },
@@ -40,12 +42,13 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.get(
-    '/self',
+    "/self",
     {
+      preHandler: isAuthenticated,
       schema: {
         response: {
-          200: $ref('signInResponseSchema'),
-          404: $ref('notFoundResponseSchema'),
+          200: $ref("signInResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
         },
       },
     },
@@ -53,12 +56,13 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.post(
-    '/signout',
+    "/signout",
     {
+      preHandler: isAuthenticated,
       schema: {
         response: {
-          200: $ref('successResponseSchema'),
-          404: $ref('notFoundResponseSchema'),
+          200: $ref("successResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
         },
       },
     },
@@ -66,13 +70,14 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.put(
-    '/:id',
+    "/:id",
     {
+      preHandler: isAuthenticated,
       schema: {
-        body: $ref('updateAccountByIdInputSchema'),
+        body: $ref("updateAccountByIdInputSchema"),
         response: {
-          201: $ref('updateAccountByIdResponseSchema'),
-          404: $ref('notFoundResponseSchema'),
+          201: $ref("updateAccountByIdResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
         },
       },
     },
@@ -80,12 +85,13 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.delete(
-    '/:id',
+    "/:id",
     {
+      preHandler: isAuthenticated,
       schema: {
         response: {
-          200: $ref('deleteAccountByIdResponseSchema'),
-          404: $ref('notFoundResponseSchema'),
+          200: $ref("deleteAccountByIdResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
         },
       },
     },
@@ -93,12 +99,13 @@ export async function accountRoutes(server: FastifyInstance) {
   )
 
   server.get(
-    '/:id',
+    "/:id",
     {
+      preHandler: isAuthenticated,
       schema: {
         response: {
-          200: $ref('getAccountByIdResponseSchema'),
-          404: $ref('notFoundResponseSchema'),
+          200: $ref("getAccountByIdResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
         },
       },
     },

@@ -1,6 +1,11 @@
-import { prisma } from '@template/database'
-import bcrypt from 'bcrypt'
-import { SignUpInput, SignInInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
+import { prisma } from "@template/database"
+import bcrypt from "bcrypt"
+import {
+  SignUpInput,
+  SignInInput,
+  UpdateAccountByIdInput,
+  ByIdParam,
+} from "@template/schemas"
 
 export async function getAccountByEmail(body: SignInInput) {
   const { email } = body
@@ -22,7 +27,10 @@ export async function createAccount(body: SignUpInput) {
   })
 }
 
-export async function updateAccountById(body: UpdateAccountByIdInput, params: ByIdParam) {
+export async function updateAccountById(
+  body: UpdateAccountByIdInput,
+  params: ByIdParam
+) {
   const { id } = params
   const { email } = body
   const account = await prisma.account.update({
