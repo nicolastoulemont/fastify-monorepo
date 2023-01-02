@@ -20,6 +20,7 @@ model Account {
   password String /// @zod.min(8, { message: "The password must be at least 8 characters long" })
   messages Message[]
   channels AccountChannel[]
+  Media    Media[]
 }
 
 model AccountChannel {
@@ -45,9 +46,21 @@ model Message {
   id        String   @id @default(cuid()) /// @zod.uuid()
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  content   String
+  status    String
   channelId String /// @zod.uuid()
   channel   Channel  @relation(fields: [channelId], references: [id], onDelete: Cascade)
   accountId String /// @zod.uuid()
   account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
-  content   String
+  medias    Media[]
+}
+
+model Media {
+  id        String   @id @default(cuid()) /// @zod.uuid()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  accountId String /// @zod.uuid()
+  account   Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  messageId String
 }
