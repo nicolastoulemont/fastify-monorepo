@@ -1,16 +1,22 @@
-import { Form, Link, useActionData, useLoaderData } from "react-router-dom"
+import {
+  Form,
+  Link,
+  redirect,
+  useActionData,
+  useLoaderData,
+} from "react-router-dom"
 import { getUserChannels } from "./Dashboard.http"
 import { queryClient } from "../../query"
-
+import { AccountWithoutPassword } from "@template/schemas"
 import { api } from "../../../utils"
 import { getSelf } from "../../shared/http"
 
 export const loader = async () => {
   const selfRes = await getSelf()
   if (api.isError(selfRes)) {
-    return await api.handleError(selfRes)
+    return redirect("/signin")
   }
-  const self = await selfRes.json()
+  const self: AccountWithoutPassword = await selfRes.json()
 
   const channelsRes = await getUserChannels()
   if (api.isError(channelsRes)) {

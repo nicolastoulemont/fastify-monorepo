@@ -1,9 +1,9 @@
 export const api = {
   fetch: async (...args: Parameters<typeof window.fetch>) => {
     const [ROUTE, options] = args
-    const BASE_API_URL = 'http://localhost:4000/api/v1'
+    const BASE_API_URL = "http://localhost:4000/api/v1"
     return await fetch(`${BASE_API_URL}${ROUTE}`, {
-      credentials: 'include',
+      credentials: "include",
       ...options,
     })
   },

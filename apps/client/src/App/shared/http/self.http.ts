@@ -1,10 +1,10 @@
-import { api } from '../../../utils'
+import { api } from "../../../utils"
 
 export async function getSelf() {
-  return await api.fetch('/accounts/self', {
-    method: 'get',
+  return await api.fetch("/accounts/self", {
+    method: "get",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   })
 }
