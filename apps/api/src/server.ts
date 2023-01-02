@@ -3,6 +3,9 @@ import fastifyCors from "@fastify/cors"
 import fastifyMultipart from "@fastify/multipart"
 import fastifyWebsockets from "@fastify/websocket"
 import fastifySecureSession from "@fastify/secure-session"
+import swagger from "@fastify/swagger"
+import swaggerUi from "@fastify/swagger-ui"
+import { withRefResolver } from "fastify-zod"
 import { messagesRoutes } from "./modules/message/message.route"
 import { accountRoutes } from "./modules/account/account.route"
 import { accountSchemas } from "./modules/account/account.schema"
@@ -24,6 +27,7 @@ export function buildServer() {
   server.register(fastifyMultipart, { attachFieldsToBody: "keyValues" })
   server.register(fastifyWebsockets)
 
+  // Auth
   server.register(fastifySecureSession, {
     cookieName: "session",
     // https://github.com/fastify/fastify-secure-session#using-keys-as-strings
@@ -36,10 +40,36 @@ export function buildServer() {
     },
   })
 
+  // Schemas registrations
   for (const schema of accountSchemas) {
     server.addSchema(schema)
   }
 
+  // Open API and Swagger config
+  server.register(
+    swagger,
+    withRefResolver({
+      exposeRoute: true,
+      openapi: {
+        info: {
+          title: "Api",
+          description: "Api documentation",
+          version: "1.0.0",
+        },
+      },
+    })
+  )
+
+  server.register(swaggerUi, {
+    routePrefix: "/docs",
+    uiConfig: {
+      docExpansion: "full",
+      deepLinking: false,
+    },
+    staticCSP: true,
+  })
+
+  // Routes registrations
   server.register(accountRoutes, { prefix: "api/v1/accounts" })
   server.register(messagesRoutes, { prefix: "api/v1/messages" })
   server.register(healthcheckRoute, { prefix: "api/v1/health-check" })
