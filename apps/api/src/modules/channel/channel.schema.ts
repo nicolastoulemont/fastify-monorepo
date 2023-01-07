@@ -8,14 +8,12 @@ import {
   updateAccountByIdResponseSchema,
   deleteAccountByIdResponseSchema,
   getAccountByIdResponseSchema,
-  getAccountsQueryString,
   notFoundResponseSchema,
   unAuthorizedResponseSchema,
   successResponseSchema,
-  uuidSchema,
 } from "@template/schemas"
 
-export const { schemas: accountSchemas, $ref } = buildJsonSchemas({
+export const { schemas: channelSchemas, $ref } = buildJsonSchemas({
   signInInputSchema,
   signInResponseSchema,
   signUpInputSchema,
@@ -24,9 +22,7 @@ export const { schemas: accountSchemas, $ref } = buildJsonSchemas({
   updateAccountByIdResponseSchema,
   deleteAccountByIdResponseSchema,
   getAccountByIdResponseSchema,
-  getAccountsQueryString,
   notFoundResponseSchema,
   unAuthorizedResponseSchema,
   successResponseSchema,
-  uuidSchema,
 })

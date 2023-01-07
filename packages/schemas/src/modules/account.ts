@@ -26,6 +26,10 @@ export const signUpResponseSchema = z.object({ success: z.boolean() })
  * Get account
  */
 export const getAccountByIdResponseSchema = accountWithoutPassword
+export const getAccountsQueryString = z.object({
+  id: z.string().uuid().optional(),
+  email: z.string().email().optional(),
+})
 
 /**
  * Update account

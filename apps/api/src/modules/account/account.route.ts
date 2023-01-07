@@ -75,6 +75,7 @@ export async function accountRoutes(server: FastifyInstance) {
       preHandler: isAuthenticated,
       schema: {
         body: $ref("updateAccountByIdInputSchema"),
+        params: $ref("uuidSchema"),
         response: {
           201: $ref("updateAccountByIdResponseSchema"),
           404: $ref("notFoundResponseSchema"),
@@ -89,6 +90,7 @@ export async function accountRoutes(server: FastifyInstance) {
     {
       preHandler: isAuthenticated,
       schema: {
+        params: $ref("uuidSchema"),
         response: {
           200: $ref("deleteAccountByIdResponseSchema"),
           404: $ref("notFoundResponseSchema"),
@@ -103,6 +105,22 @@ export async function accountRoutes(server: FastifyInstance) {
     {
       preHandler: isAuthenticated,
       schema: {
+        params: $ref("uuidSchema"),
+        response: {
+          200: $ref("getAccountByIdResponseSchema"),
+          404: $ref("notFoundResponseSchema"),
+        },
+      },
+    },
+    getAccountByIdHandler
+  )
+
+  server.get(
+    "",
+    {
+      preHandler: isAuthenticated,
+      schema: {
+        querystring: $ref("getAccountsQueryString"),
         response: {
           200: $ref("getAccountByIdResponseSchema"),
           404: $ref("notFoundResponseSchema"),
