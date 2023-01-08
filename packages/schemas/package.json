@@ -1,9 +1,6 @@
 {
   "name": "@template/schemas",
-<<<<<<< HEAD
-  "description": "HTTP and websocket sdk",
-=======
->>>>>>> e7f7b77b00a72fc76b7b58f6d2f282a3cac03dd7
+  "description": "Shared validation schemas",
   "version": "1.0.0",
   "author": "ntoulemont",
   "license": "ISC",

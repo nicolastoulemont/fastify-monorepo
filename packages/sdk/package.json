@@ -1,10 +1,17 @@
 {
   "name": "@template/sdk",
+  "description": "HTTP SDK",
   "version": "1.0.0",
   "author": "ntoulemont",
   "license": "ISC",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "private": true,
   "scripts": {
     "build": "rimraf ./dist && tsc -b",
