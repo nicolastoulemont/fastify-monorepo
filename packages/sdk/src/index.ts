@@ -47,7 +47,7 @@ type Options<Method, Endpoint> = Omit<RequestInit, "body"> & {
     body: RequestBody<Endpoint>
   }>
 
-export default async function api<
+export async function api<
   Path extends keyof paths,
   Method extends keyof paths[Path]
 >(

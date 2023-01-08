@@ -4,31 +4,30 @@
   "version": "1.0.0",
   "author": "ntoulemont",
   "license": "ISC",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
-  "private": true,
   "scripts": {
-    "build": "rimraf ./dist && tsc -b",
-    "dev": "tsc --watch",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "pnpm build --watch src",
     "generate": "npx openapi-typescript http://localhost:4000/docs/json --output src/generated/schema.ts && pnpm lint",
     "lint": "ts-node src/scripts/lint.generated.ts"
   },
   "dependencies": {
-    "rimraf": "^3.0.2",
     "zod": "3.19.1"
   },
   "devDependencies": {
     "@types/node": "18.7.18",
     "openapi-typescript": "^6.1.0",
     "ts-node": "^10.9.1",
-    "typescript": "4.8.3"
+    "typescript": "4.8.3",
+    "tsup": "6.5.0"
   }
 }
