@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { prisma } from "@template/database"
 import bcrypt from "bcrypt"
 import {
@@ -7,11 +6,6 @@ import {
   UpdateAccountByIdInput,
   ByIdParam,
 } from "@template/schemas"
-=======
-import { prisma } from '@template/database'
-import bcrypt from 'bcrypt'
-import { SignUpInput, SignInInput, UpdateAccountByIdInput, ByIdParam } from './account.schema'
->>>>>>> e7f7b77b00a72fc76b7b58f6d2f282a3cac03dd7
 
 export async function getAccountByEmail(body: SignInInput) {
   const { email } = body
@@ -35,7 +29,7 @@ export async function createAccount(body: SignUpInput) {
 
 export async function updateAccountById(
   body: UpdateAccountByIdInput,
-  params: ByIdParam
+  params: ByIdParam["id"]
 ) {
   const { id } = params
   const { email } = body
@@ -48,7 +42,7 @@ export async function updateAccountById(
   return account
 }
 
-export async function deleteAccountById(params: ByIdParam) {
+export async function deleteAccountById(params: ByIdParam["id"]) {
   const { id } = params
   await prisma.account.delete({
     where: {
@@ -57,7 +51,7 @@ export async function deleteAccountById(params: ByIdParam) {
   })
 }
 
-export async function getAccountById(params: ByIdParam) {
+export async function getAccountById(params: ByIdParam["id"]) {
   const { id } = params
 
   return await prisma.account.findUniqueOrThrow({
